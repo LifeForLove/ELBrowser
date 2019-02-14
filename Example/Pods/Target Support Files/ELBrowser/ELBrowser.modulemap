@@ -1,0 +1,6 @@
+framework module ELBrowser {
+  umbrella header "ELBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}
