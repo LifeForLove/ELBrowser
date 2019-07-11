@@ -9,9 +9,6 @@
 #define ELBrowser_h
 
 #import "ELBrowserViewController.h"
-#import "UIImageView+WebCache.h"
-#import "SDWebImageManager.h"
-#import "UIView+WebCache.h"
 #import "ELBrowserProgressProtocol.h"
 #import "ELBrowserPageControlProtocol.h"
 #import "ELBrowserCollectionViewCell.h"

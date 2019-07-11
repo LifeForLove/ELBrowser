@@ -1,6 +1,6 @@
 PODS:
   - ELBrowser (1.0.0):
-    - SDWebImage (~> 4.3.0)
+    - SDWebImage
   - Masonry (1.1.0)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ELBrowser: 8a94569912cfd3f6d5dc898628f3d850593e9cf0
+  ELBrowser: 2c8f0aba30739bb90086ba110103957c5a8c2908
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 

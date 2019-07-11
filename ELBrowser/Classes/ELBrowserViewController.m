@@ -11,6 +11,10 @@
 #import "STTransitionPushAnimation.h"
 #import "ELBrowserPageControlProtocol.h"
 
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "UIView+WebCache.h"
+
 @interface ELBrowserViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIViewControllerTransitioningDelegate,ELBrowserCollectionViewCellDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UICollectionView *collectionView;

@@ -8,6 +8,8 @@
 #import "ELBrowserCollectionViewCell.h"
 #import "ELBrowserProgressView.h"
 #import "ELBrowserViewController.h"
+#import "UIImageView+WebCache.h"
+#import "UIView+WebCache.h"
 @interface ELBrowserCollectionViewCell ()<UIScrollViewDelegate>
 
 @end
