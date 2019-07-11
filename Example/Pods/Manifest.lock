@@ -2,9 +2,9 @@ PODS:
   - ELBrowser (1.0.0):
     - SDWebImage
   - Masonry (1.1.0)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
 
 DEPENDENCIES:
   - ELBrowser (from `../`)
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ELBrowser: 2c8f0aba30739bb90086ba110103957c5a8c2908
+  ELBrowser: ad6bf416d00e3b8222731da31ee8717bbe05e4d9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
 PODFILE CHECKSUM: 88544a42253a8af9c4380be30001e4fc98170751
 
