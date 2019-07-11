@@ -19,61 +19,27 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ELBrowser'
 ```
-##仿朋友圈图片浏览器
+##图片浏览器
 
+###简述
+使用UIViewController+CollectionView结构,动画效果使用转场动画实现,加载图片使用SDWebImageView,将图片加载到内存中,解决了从本地缓存读取页面滑动时卡顿的问题,视图销毁后做了释放内存的处理,代码简单,结构清晰
+
+支持自定义加载视图
+支持横竖屏
+支持自定义 collectionViewCell
+支持自定义分页视图
 
 ###使用方法
 ```
-    ELBrowser * browser = [[ELBrowser alloc]init];
-     ELBrowserConfig * config = [[ELBrowserConfig alloc]init];
-     config.width = 200;
-     config.originalUrls = originalImageUrls;
-     config.smallUrls = thumbnailImageUrls;
-     [browser showELBrowserWithConfig:config];
-     [self.view addSubview:browser];
-     [browser mas_makeConstraints:^(MASConstraintMaker *make) {
-     make.size.mas_equalTo(200);
-     make.center.equalTo(self.view);
-```
-
-###代码说明
-最主要解决的问题,拖拽手势与collectionView滑动冲突的解决.
-当手指接触到屏幕的时候,会调用:
-
-```
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if (gestureRecognizer == self.panGes) {
-        //记录刚接触时的坐标
-        firstTouchPoint = [touch locationInView:self.window];
-    }
-    return YES;
-}
-```
-
-
-当手指开始滑动的时候,会调用:
-
-```
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    //判断是否是左右滑动  滑动区间设置为+-10
-    CGPoint touchPoint = [gestureRecognizer locationInView:self.window];
-    CGFloat dirTop = firstTouchPoint.y - touchPoint.y;
-    if (dirTop > -10 && dirTop < 10) {
-        return NO;
-    }
-    //判断是否是上下滑动
-    CGFloat dirLift = firstTouchPoint.x - touchPoint.x;
-    if (dirLift > -10 && dirLift < 10 && self.imageView.frame.size.height > [UIScreen mainScreen].bounds.size.height) {
-        return NO;
-    }
-    
-    return YES;
-}
-```
-
-
+    ELBrowserViewController * vc = [[ELBrowserViewController alloc]init];
+    vc.delegate = self;
+    vc.dataSource = self;
+    vc.originalUrls = originalImageUrls;
+    vc.smallUrls = smallImageUrls;//非必传
+    vc.customPageControlClassString = @"ELBrowserCustomPageControlView";//自定义分页视图（类名） 非必传
+    vc.customProgressClassString = @"ELCustomProgressView";//自定义进度条（类名） 非必传
+    vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";//自定义cell（类名） 非必传
+    [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];```
 
 
 ## 效果图

@@ -1,55 +1,65 @@
 //
-//  ELProgressView.m
-//  ELBroswer
+//  ELBrowserProgressView.m
+//  ELBrowser
 //
-//  Created by 高欣 on 2018/5/25.
-//  Copyright © 2018年 getElementByYou. All rights reserved.
+//  Created by 高欣 on 2019/7/5.
 //
 
-#import "ELProgressView.h"
-
+#import "ELBrowserProgressView.h"
 //角度转换为弧度
 #define CircleDegreeToRadian(d) ((d)*M_PI)/180.0
 //宽高定义
 #define CircleSelfWidth self.frame.size.width
 #define CircleSelfHeight self.frame.size.height
 
-@interface ELProgressView ()
+@interface ELBrowserProgressView ()
+
+/**
+ 线条背景色
+ */
+@property (nonatomic, strong) UIColor *pathBackColor;
+
+/**
+ 线条填充色
+ */
+@property (nonatomic, strong) UIColor *pathFillColor;
+
+/**
+ 起点角度。角度从水平右侧开始为0，顺时针为增加角度。直接传度数 如-90
+ */
+@property (nonatomic, assign) CGFloat startAngle;
+
+/**
+ 减少的角度 直接传度数 如30
+ */
+@property (nonatomic, assign) CGFloat reduceValue;
+
+/**
+ 线宽
+ */
+@property (nonatomic, assign) CGFloat strokeWidth;
+
+
+/**
+ 是否显示小圆点
+ */
+@property (nonatomic, assign) BOOL showPoint;
+
+/**
+ 是否显示文字
+ */
+@property (nonatomic, assign) BOOL showProgressText;
 
 @end
-@implementation ELProgressView {
+
+@implementation ELBrowserProgressView {
     CGFloat fakeProgress;
 }
 - (instancetype)init {
     if (self = [super init]) {
         [self initialization];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initialization];
-    }
-    return self;
-}
-
-//初始化
-- (instancetype)initWithFrame:(CGRect)frame
-                pathBackColor:(UIColor *)pathBackColor
-                pathFillColor:(UIColor *)pathFillColor
-                   startAngle:(CGFloat)startAngle
-                  strokeWidth:(CGFloat)strokeWidth {
-    if (self = [super initWithFrame:frame]) {
-        [self initialization];
-        if (pathBackColor) {
-            _pathBackColor = pathBackColor;
-        }
-        if (pathFillColor) {
-            _pathFillColor = pathFillColor;
-        }
-        _startAngle = CircleDegreeToRadian(startAngle);
-        _strokeWidth = strokeWidth;
+        _startAngle = CircleDegreeToRadian(90);
+        _strokeWidth = 3;
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
     }
@@ -159,7 +169,7 @@
     if (_showProgressText) {
         //画文字
         NSString *currentText = [NSString stringWithFormat:@"%.f%%",fakeProgress <= 0 ?0:fakeProgress*100];
-
+        
         NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
         textStyle.lineBreakMode = NSLineBreakByWordWrapping;
         textStyle.alignment = NSTextAlignmentCenter;//水平居中
@@ -178,15 +188,23 @@
 
 //设置进度
 - (void)setProgress:(CGFloat)progress {
-    _progress = progress;
-    fakeProgress = _progress;
+    fakeProgress = progress;
     [self setNeedsDisplay];
+    
+    if (progress ==  1) {
+        [self removeProgressView];
+    }
 }
 
-- (void)removeProgressView
-{
+- (void)removeProgressView {
     [self removeFromSuperview];
 }
+
+- (void)resetFrame:(UIView *)contentView {
+    self.frame = CGRectMake(0, 0, 80, 80);
+    self.center = contentView.center;
+}
+
 
 
 @end

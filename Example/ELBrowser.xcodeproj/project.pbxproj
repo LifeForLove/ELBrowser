@@ -23,6 +23,9 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		ACD6D6372215027C001DEAE2 /* ImageURLPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACD6D6362215027A001DEAE2 /* ImageURLPlist.plist */; };
+		ACDBBE1122D42D67007CF0F5 /* ELCustomProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDBBE1022D42D67007CF0F5 /* ELCustomProgressView.m */; };
+		ACDBBE1622D43223007CF0F5 /* ELBrowserCustomPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDBBE1522D43223007CF0F5 /* ELBrowserCustomPageControlView.m */; };
+		ACDBBE1922D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDBBE1822D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m */; };
 		EC89A03CEE0BF9E5456E8800 /* Pods_ELBrowser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297BE6D3C4105865E3001105 /* Pods_ELBrowser_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,12 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9752A22B90D568ED4984EABF /* Pods-ELBrowser_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELBrowser_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		ACD6D6362215027A001DEAE2 /* ImageURLPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageURLPlist.plist; sourceTree = "<group>"; };
+		ACDBBE0F22D42D67007CF0F5 /* ELCustomProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELCustomProgressView.h; sourceTree = "<group>"; };
+		ACDBBE1022D42D67007CF0F5 /* ELCustomProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELCustomProgressView.m; sourceTree = "<group>"; };
+		ACDBBE1422D43223007CF0F5 /* ELBrowserCustomPageControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELBrowserCustomPageControlView.h; sourceTree = "<group>"; };
+		ACDBBE1522D43223007CF0F5 /* ELBrowserCustomPageControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomPageControlView.m; sourceTree = "<group>"; };
+		ACDBBE1722D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELBrowserCustomCollectionViewCell.h; sourceTree = "<group>"; };
+		ACDBBE1822D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		D33ADA38CE250A0AE4628CFE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		DE6DB89392B11A89C17C979D /* Pods_ELBrowser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELBrowser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,6 +154,12 @@
 				ACD6D6362215027A001DEAE2 /* ImageURLPlist.plist */,
 				6003F5A5195388D20070C39A /* ELViewController.h */,
 				6003F5A6195388D20070C39A /* ELViewController.m */,
+				ACDBBE0F22D42D67007CF0F5 /* ELCustomProgressView.h */,
+				ACDBBE1022D42D67007CF0F5 /* ELCustomProgressView.m */,
+				ACDBBE1422D43223007CF0F5 /* ELBrowserCustomPageControlView.h */,
+				ACDBBE1522D43223007CF0F5 /* ELBrowserCustomPageControlView.m */,
+				ACDBBE1722D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.h */,
+				ACDBBE1822D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -256,6 +271,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -300,7 +316,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ELBrowser/ELBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -313,7 +329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79A86744F9045B73D701F1BA /* [CP] Check Pods Manifest.lock */ = {
@@ -342,6 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* ELAppDelegate.m in Sources */,
+				ACDBBE1622D43223007CF0F5 /* ELBrowserCustomPageControlView.m in Sources */,
+				ACDBBE1122D42D67007CF0F5 /* ELCustomProgressView.m in Sources */,
+				ACDBBE1922D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* ELViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

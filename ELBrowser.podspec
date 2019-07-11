@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ELBrowser'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = '图片浏览器'
 
 # This description is used to generate tags and improve search results.
@@ -32,12 +32,11 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'ELBrowser/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'ELBrowser' => ['ELBrowser/Assets/*.png']
-  # }
+  s.resource_bundles = {
+   'ELBrowser' => ['ELBrowser/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-    s.dependency 'Masonry', '~> 1.1.0'
     s.dependency 'SDWebImage', '~> 4.3.0'
 end

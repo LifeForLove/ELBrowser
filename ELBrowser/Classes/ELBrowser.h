@@ -1,19 +1,22 @@
 //
 //  ELBrowser.h
-//  ELBroswer
+//  ELBrowser
 //
-//  Created by 高欣 on 2018/5/25.
-//  Copyright © 2018年 getElementByYou. All rights reserved.
+//  Created by 高欣 on 2019/7/5.
 //
 
-#import <UIKit/UIKit.h>
-#import "ELBrowserConfig.h"
-@interface ELBrowser : UIView
+#ifndef ELBrowser_h
+#define ELBrowser_h
 
-/**
- 展示
- @param config 配置
- */
-- (void)showELBrowserWithConfig:(ELBrowserConfig *)config;
+#import "ELBrowserViewController.h"
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "UIView+WebCache.h"
+#import "ELBrowserProgressProtocol.h"
+#import "ELBrowserPageControlProtocol.h"
+#import "ELBrowserCollectionViewCell.h"
 
-@end
+#define kCollectionViewPadding 10
+
+
+#endif /* ELBrowser_h */

@@ -1,6 +1,5 @@
 PODS:
-  - ELBrowser (0.1.0):
-    - Masonry (~> 1.1.0)
+  - ELBrowser (1.0.0):
     - SDWebImage (~> 4.3.0)
   - Masonry (1.1.0)
   - SDWebImage (4.3.3):
@@ -9,6 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - ELBrowser (from `../`)
+  - Masonry
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ELBrowser: 2f1e9c1eefeb2611e5a08afae74b949d9a3c58df
+  ELBrowser: 8a94569912cfd3f6d5dc898628f3d850593e9cf0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 
-PODFILE CHECKSUM: 9b17fdad5ec3835dd37758e1716ea1a0d01d9ee0
+PODFILE CHECKSUM: 88544a42253a8af9c4380be30001e4fc98170751
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

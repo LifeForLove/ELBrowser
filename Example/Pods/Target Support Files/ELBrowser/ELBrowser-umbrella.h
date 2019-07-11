@@ -11,11 +11,13 @@
 #endif
 
 #import "ELBrowser.h"
-#import "ELBrowserConfig.h"
-#import "ELPhotoBrowserCollectionViewCell.h"
-#import "ELPhotoBrowserView.h"
-#import "ELPhotoListModel.h"
-#import "ELProgressView.h"
+#import "ELBrowserCollectionViewCell.h"
+#import "ELBrowserPageControlProtocol.h"
+#import "ELBrowserProgressProtocol.h"
+#import "ELBrowserProgressView.h"
+#import "ELBrowserViewController.h"
+#import "STTransitionPopAnimation.h"
+#import "STTransitionPushAnimation.h"
 
 FOUNDATION_EXPORT double ELBrowserVersionNumber;
 FOUNDATION_EXPORT const unsigned char ELBrowserVersionString[];
