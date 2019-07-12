@@ -24,8 +24,9 @@ pod 'ELBrowser'
 ###简述
 使用UIViewController+CollectionView结构,动画效果使用转场动画实现,加载图片使用SDWebImageView,将图片加载到内存中,解决了从本地缓存读取页面滑动时卡顿的问题,视图销毁后做了释放内存的处理,代码简单,结构清晰
 
-支持自定义加载视图
 支持横竖屏
+支持GIF
+支持自定义加载视图
 支持自定义 collectionViewCell
 支持自定义分页视图
 
