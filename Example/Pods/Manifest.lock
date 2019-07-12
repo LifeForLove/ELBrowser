@@ -1,10 +1,15 @@
 PODS:
   - ELBrowser (1.0.0):
-    - SDWebImage
+    - SDWebImage (~> 4.0)
+    - SDWebImage/GIF
+  - FLAnimatedImage (1.0.12)
   - Masonry (1.1.0)
-  - SDWebImage (5.0.6):
-    - SDWebImage/Core (= 5.0.6)
-  - SDWebImage/Core (5.0.6)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
+  - SDWebImage/GIF (4.4.7):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
 
 DEPENDENCIES:
   - ELBrowser (from `../`)
@@ -12,6 +17,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FLAnimatedImage
     - Masonry
     - SDWebImage
 
@@ -20,9 +26,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ELBrowser: ad6bf416d00e3b8222731da31ee8717bbe05e4d9
+  ELBrowser: 5d372a28de0c07ddd0fb8a3d0cbd6fe0c76c46d0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
 
 PODFILE CHECKSUM: 88544a42253a8af9c4380be30001e4fc98170751
 

@@ -26,6 +26,9 @@
   },
   "dependencies": {
     "SDWebImage": [
+      "~> 4.0"
+    ],
+    "SDWebImage/GIF": [
 
     ]
   },

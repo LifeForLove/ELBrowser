@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "ELBrowser.h"
 #import "ELBrowserProgressProtocol.h"
+#import "FLAnimatedImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  展示的imageView 图片
  */
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) FLAnimatedImageView *imageView;
 
 /**
  进度条

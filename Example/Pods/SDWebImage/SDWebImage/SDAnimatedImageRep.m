@@ -10,8 +10,13 @@
 
 #if SD_MAC
 
-#import "SDImageGIFCoderInternal.h"
-#import "SDImageAPNGCoderInternal.h"
+#import "SDWebImageGIFCoder.h"
+
+@interface SDWebImageGIFCoder ()
+
+- (float)sd_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source;
+
+@end
 
 @implementation SDAnimatedImageRep {
     CGImageSourceRef _imageSource;
@@ -39,25 +44,6 @@
             return self;
         }
         _imageSource = imageSource;
-        NSUInteger frameCount = CGImageSourceGetCount(imageSource);
-        if (frameCount <= 1) {
-            return self;
-        }
-        CFStringRef type = CGImageSourceGetType(imageSource);
-        if (!type) {
-            return self;
-        }
-        if (CFStringCompare(type, kUTTypeGIF, 0) == kCFCompareEqualTo) {
-            // GIF
-            // Do nothing because NSBitmapImageRep support it
-        } else if (CFStringCompare(type, kUTTypePNG, 0) == kCFCompareEqualTo) {
-            // APNG
-            // Do initilize about frame count, current frame/duration and loop count
-            [self setProperty:NSImageFrameCount withValue:@(frameCount)];
-            [self setProperty:NSImageCurrentFrame withValue:@(0)];
-            NSUInteger loopCount = [[SDImageAPNGCoder sharedCoder] sd_imageLoopCountWithSource:imageSource];
-            [self setProperty:NSImageLoopCount withValue:@(loopCount)];
-        }
     }
     return self;
 }
@@ -78,12 +64,9 @@
         }
         NSUInteger index = [value unsignedIntegerValue];
         float frameDuration = 0;
+        // Through we currently process GIF only, in the 5.x we support APNG so we keep the extensibility
         if (CFStringCompare(type, kUTTypeGIF, 0) == kCFCompareEqualTo) {
-            // GIF
-            frameDuration = [[SDImageGIFCoder sharedCoder] sd_frameDurationAtIndex:index source:imageSource];
-        } else if (CFStringCompare(type, kUTTypePNG, 0) == kCFCompareEqualTo) {
-            // APNG
-            frameDuration = [[SDImageAPNGCoder sharedCoder] sd_frameDurationAtIndex:index source:imageSource];
+            frameDuration = [[SDWebImageGIFCoder sharedCoder] sd_frameDurationAtIndex:index source:imageSource];
         }
         if (!frameDuration) {
             return;

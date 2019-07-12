@@ -8,15 +8,20 @@
  */
 
 #import "UIImage+GIF.h"
-#import "SDImageGIFCoder.h"
+#import "SDWebImageGIFCoder.h"
+#import "NSImage+WebCache.h"
 
 @implementation UIImage (GIF)
 
-+ (nullable UIImage *)sd_imageWithGIFData:(nullable NSData *)data {
++ (UIImage *)sd_animatedGIFWithData:(NSData *)data {
     if (!data) {
         return nil;
     }
-    return [[SDImageGIFCoder sharedCoder] decodedImageWithData:data options:0];
+    return [[SDWebImageGIFCoder sharedCoder] decodedImageWithData:data];
+}
+
+- (BOOL)isGIF {
+    return (self.images != nil);
 }
 
 @end

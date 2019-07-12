@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import "SDWebImageManager.h"
 #import "UIView+WebCache.h"
+#import "SDWebImagePrefetcher.h"
 
 @interface ELBrowserViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIViewControllerTransitioningDelegate,ELBrowserCollectionViewCellDelegate,UIGestureRecognizerDelegate>
 
@@ -201,6 +202,14 @@
     for (NSString * key in self.originalUrls) {
         [[SDImageCache sharedImageCache] queryCacheOperationForKey:key done:nil];
     }
+    /*
+     NSMutableArray * urlArr = [NSMutableArray array];
+     for (NSString * key in self.originalUrls) {
+     NSURL * url = [NSURL URLWithString:key];
+     [urlArr addObject:url];
+     }
+     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:self.originalUrls];
+     */
     
     self.modalPresentationStyle = UIModalPresentationCustom;
     self.transitioningDelegate = self;
