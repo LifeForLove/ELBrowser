@@ -83,11 +83,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic,copy) NSString *customCellClassString;
 
+/**
+ 自定义cell 模型数组
+ */
+@property (nonatomic,strong) NSArray *customCellModelArray;
+
 @property (nonatomic, weak, nullable) id <ELBrowserViewControllerDelegate> delegate;
 @property (nonatomic, weak, nullable) id <ELBrowserViewControllerDataSource> dataSource;
 
 - (void)showWithFormViewController:(UIViewController *)viewController;
 - (void)showWithFormViewController:(UIViewController *)viewController selectIndex:(NSInteger)selectIndex;
+
+- (void)hidden;
 
 @end
 

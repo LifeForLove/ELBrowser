@@ -9,6 +9,7 @@
 #import "ELBrowser.h"
 #import "ELBrowserProgressProtocol.h"
 #import "FLAnimatedImage.h"
+#import "ELBrowserCollectionViewCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface ELBrowserCollectionViewCell : UICollectionViewCell
+@interface ELBrowserCollectionViewCell : UICollectionViewCell<ELBrowserCollectionViewCellProtocol>
 
 /**
  要上下滑动  所以要设置scrollView

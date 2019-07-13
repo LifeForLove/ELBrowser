@@ -12,6 +12,7 @@
 
 #import "ELBrowser.h"
 #import "ELBrowserCollectionViewCell.h"
+#import "ELBrowserCollectionViewCellProtocol.h"
 #import "ELBrowserPageControlProtocol.h"
 #import "ELBrowserProgressProtocol.h"
 #import "ELBrowserProgressView.h"

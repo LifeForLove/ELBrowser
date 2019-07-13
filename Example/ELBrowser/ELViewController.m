@@ -124,7 +124,8 @@
     vc.smallUrls = smallImageUrls;//非必传
     vc.customPageControlClassString = @"ELBrowserCustomPageControlView";//自定义分页视图 非必传
     vc.customProgressClassString = @"ELCustomProgressView";//自定义进度条 非必传
-    vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";//自定义cell 非必传
+//    vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";//自定义cell 非必传
+    vc.customCellModelArray = @[@"测试1",@"测试2",@"测试3",@"测试4"];//自定义cell的数据模型
     [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];
 }
 

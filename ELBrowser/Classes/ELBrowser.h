@@ -11,6 +11,7 @@
 #import "ELBrowserViewController.h"
 #import "ELBrowserProgressProtocol.h"
 #import "ELBrowserPageControlProtocol.h"
+#import "ELBrowserCollectionViewCellProtocol.h"
 #import "ELBrowserCollectionViewCell.h"
 
 #define kCollectionViewPadding 10

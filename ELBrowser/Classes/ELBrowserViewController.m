@@ -10,6 +10,7 @@
 #import "STTransitionPopAnimation.h"
 #import "STTransitionPushAnimation.h"
 #import "ELBrowserPageControlProtocol.h"
+#import "ELBrowserCollectionViewCellProtocol.h"
 
 #import "UIImageView+WebCache.h"
 #import "SDWebImageManager.h"
@@ -89,11 +90,25 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceWillOrientation)
-                                                 name:UIApplicationWillChangeStatusBarOrientationNotification
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
 }
 
+- (BOOL)shouldAutorotate {
+    switch (self.panGes.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStateEnded:
+            return NO;
+        default:
+            return YES;
+            break;
+    }
+}
+
 - (void)deviceWillOrientation {
+    //旋转的时候重置页面
+    [self  recover];
     _offsetPageIndex = _collectionView.contentOffset.x / _layout.itemSize.width;
 }
 
@@ -136,13 +151,14 @@
             [self.collectionView setCenter:CGPointMake(self.view.center.x + translation.x * ratio, self.view.center.y + translation.y * ratio)];
             self.collectionView.transform = CGAffineTransformMakeScale(ratio, ratio);
             self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:ratio];
+            NSLog(@"%@",NSStringFromCGRect(self.collectionView.frame));
         }
             break;
         case UIGestureRecognizerStateEnded:  {
             CGFloat progress = translation.y / self.view.bounds.size.height;
             progress = fminf(fmaxf(progress, 0.0), 1.0);
             if (progress > 0.1) {
-                [self dismissAction];
+                [self hidden];
             }else {
                 ELBrowserCollectionViewCell * cell = (ELBrowserCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentSelectIndex inSection:0]];
                 [UIView animateWithDuration:0.2 animations:^{
@@ -162,18 +178,11 @@
     }
 }
 
-- (void)dismissAction {
-    //清除大图缓存
-    for (NSString * key in self.originalUrls) {
-        [[SDImageCache sharedImageCache] removeImageForKey:key fromDisk:NO withCompletion:nil];
-    }
-    
-    __weak typeof(self) weakS = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([weakS.delegate respondsToSelector:@selector(el_browserDissmissComplate)]) {
-            [weakS.delegate el_browserDissmissComplate];
-        }
-    }];
+- (void)recover {
+    self.collectionView.center = CGPointMake(self.view.center.x,
+                                             self.view.center.y);
+    self.collectionView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    self.view.backgroundColor =  [UIColor blackColor];
 }
 
 - (void)showWithFormViewController:(UIViewController *)viewController {
@@ -202,18 +211,24 @@
     for (NSString * key in self.originalUrls) {
         [[SDImageCache sharedImageCache] queryCacheOperationForKey:key done:nil];
     }
-    /*
-     NSMutableArray * urlArr = [NSMutableArray array];
-     for (NSString * key in self.originalUrls) {
-     NSURL * url = [NSURL URLWithString:key];
-     [urlArr addObject:url];
-     }
-     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:self.originalUrls];
-     */
     
     self.modalPresentationStyle = UIModalPresentationCustom;
     self.transitioningDelegate = self;
     [viewController presentViewController:self animated:YES completion:nil];
+}
+
+- (void)hidden {
+    //清除大图缓存
+    for (NSString * key in self.originalUrls) {
+        [[SDImageCache sharedImageCache] removeImageForKey:key fromDisk:NO withCompletion:nil];
+    }
+    
+    __weak typeof(self) weakS = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([weakS.delegate respondsToSelector:@selector(el_browserDissmissComplate)]) {
+            [weakS.delegate el_browserDissmissComplate];
+        }
+    }];
 }
 
 #pragma mark -  TransitioningDelegate
@@ -297,8 +312,23 @@
     ELBrowserCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     NSString * originUrl = self.originalUrls[indexPath.item];
     NSString * smallUrl = self.smallUrls[indexPath.item];
-    [cell configImageWithOriginUrl:originUrl smallUrl:smallUrl];
+    
+    if ([cell respondsToSelector:@selector(setModel:)]) {
+        id obj = indexPath.item < self.customCellModelArray.count ? self.customCellModelArray[indexPath.item] : nil;
+        [cell setModel:obj];
+    }
+    
+    if ([cell respondsToSelector:@selector(setFromViewController:)]) {
+        cell.fromViewController = self.fromViewController;
+    }
+    
+    if ([cell respondsToSelector:@selector(setBrowserViewController:)]) {
+        cell.browserViewController = self;
+    }
+    
     cell.delegate = self;
+    
+    [cell configImageWithOriginUrl:originUrl smallUrl:smallUrl];
     return cell;
 }
 
@@ -316,7 +346,7 @@
 
 #pragma mark -  ELBrowserCollectionViewCellDelegate
 - (void)hiddenAction {
-    [self dismissAction];
+    [self hidden];
 }
 
 #pragma mark - 长按手势
@@ -335,6 +365,15 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    
+    switch (self.panGes.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStateEnded:
+            return;
+        default:
+            break;
+    }
     
     self.collectionView.frame = CGRectMake(-kCollectionViewPadding, 0, self.view.bounds.size.width  + kCollectionViewPadding * 2, self.view.bounds.size.height);
     
