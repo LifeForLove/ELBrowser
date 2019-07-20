@@ -19,9 +19,9 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ELBrowser'
 ```
-##图片浏览器
+## 图片浏览器
 
-###简述
+### 简述
 	
 	可深度自定义的图片浏览器
 
@@ -32,7 +32,7 @@ pod 'ELBrowser'
 	支持自定义分页视图
 	支持自定义view
 
-###使用方法
+### 使用方法
 
 ```
      ELBrowserViewController * vc = [[ELBrowserViewController alloc]init];
@@ -78,7 +78,11 @@ pod 'ELBrowser'
 
 ## 代码
 	
-	使用UIViewController+CollectionView结构,动画效果使用转场动画实现,加载图片使用SDWebImageView,将图片加载到内存中,解决了从本地缓存读取页面滑动时卡顿的问题,视图销毁后做了释放内存的处理,代码简单,结构清晰
+	使用UIViewController+CollectionView结构
+	动画效果使用转场动画实现
+	加载图片使用SDWebImageView,将图片加载到内存中
+	解决了从本地缓存读取页面滑动时卡顿的问题
+	视图销毁后做了释放内存的处理,代码简单,结构清晰
 	
 #### 自定义说明
 	
