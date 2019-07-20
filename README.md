@@ -22,15 +22,18 @@ pod 'ELBrowser'
 ##图片浏览器
 
 ###简述
-使用UIViewController+CollectionView结构,动画效果使用转场动画实现,加载图片使用SDWebImageView,将图片加载到内存中,解决了从本地缓存读取页面滑动时卡顿的问题,视图销毁后做了释放内存的处理,代码简单,结构清晰
+	
+	可深度自定义的图片浏览器
 
-支持横竖屏
-支持GIF
-支持自定义加载视图
-支持自定义 collectionViewCell
-支持自定义分页视图
+	支持横竖屏
+	支持GIF
+	支持自定义加载视图
+	支持自定义 collectionViewCell
+	支持自定义分页视图
+	支持自定义view
 
 ###使用方法
+
 ```
      ELBrowserViewController * vc = [[ELBrowserViewController alloc]init];
     vc.delegate = self;
@@ -72,6 +75,45 @@ pod 'ELBrowser'
     }
     [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];
 ```
+
+## 代码
+	
+	使用UIViewController+CollectionView结构,动画效果使用转场动画实现,加载图片使用SDWebImageView,将图片加载到内存中,解决了从本地缓存读取页面滑动时卡顿的问题,视图销毁后做了释放内存的处理,代码简单,结构清晰
+	
+#### 自定义说明
+	
+	每种自定义样式只需要遵循对应的协议即可，在使用时只需传入类名，无需导入非常方便。
+	
+##### ELBrowserViewProtocol 
+
+	自定义view，遵循了这个协议的视图是添加在（ELBrowserViewController）控制的view上的。
+	
+	协议方法 
+	
+	@required
+	- (void)resetFrame:(UIView *)view; 是用来重置自定义view的frame
+
+	@optional
+	@property (nonatomic,weak) UIViewController *fromViewController; 弹出图片浏览器的控制器
+	@property (nonatomic,weak) ELBrowserViewController *browserViewController; 图片浏览器控制器
+	
+##### ELBrowserProgressProtocol
+	
+	自定义进度条，如果不传则会加载默认的进度条，继承自ELBrowserViewProtocol，可自定义进度条位置
+	
+	协议方法 
+	- (void)setProgress:(CGFloat)progress; 回调进度
+
+##### ELBrowserPageControlProtocol
+
+	自定义分页控件
+	
+	协议方法 
+	- (void)el_browserPageControlChanged:(NSInteger)currentSelectIndex totalCount:(NSInteger)totalCount; 滑动时回调此方法显示分页位置
+
+
+	
+	
 
 ## Author
 
