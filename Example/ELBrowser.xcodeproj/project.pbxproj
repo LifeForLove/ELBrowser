@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		403E585C22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E585B22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m */; };
+		403E586922E2A2490050ACF2 /* ELBrowserCustomView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E586822E2A2490050ACF2 /* ELBrowserCustomView1.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -41,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		297BE6D3C4105865E3001105 /* Pods_ELBrowser_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ELBrowser_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		403E585A22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELBrowserCustomPageControlView2.h; sourceTree = "<group>"; };
+		403E585B22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomPageControlView2.m; sourceTree = "<group>"; };
+		403E586722E2A2490050ACF2 /* ELBrowserCustomView1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELBrowserCustomView1.h; sourceTree = "<group>"; };
+		403E586822E2A2490050ACF2 /* ELBrowserCustomView1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomView1.m; sourceTree = "<group>"; };
 		50E8884091AB99C83173B7F9 /* Pods-ELBrowser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELBrowser_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ELBrowser_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELBrowser_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +108,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		403E585D22E1E4230050ACF2 /* 自定义进度条 */ = {
+			isa = PBXGroup;
+			children = (
+				ACDBBE0F22D42D67007CF0F5 /* ELCustomProgressView.h */,
+				ACDBBE1022D42D67007CF0F5 /* ELCustomProgressView.m */,
+			);
+			name = "自定义进度条";
+			sourceTree = "<group>";
+		};
+		403E585F22E1E43B0050ACF2 /* 自定义分页视图 */ = {
+			isa = PBXGroup;
+			children = (
+				ACDBBE1422D43223007CF0F5 /* ELBrowserCustomPageControlView.h */,
+				ACDBBE1522D43223007CF0F5 /* ELBrowserCustomPageControlView.m */,
+				403E585A22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.h */,
+				403E585B22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m */,
+			);
+			name = "自定义分页视图";
+			sourceTree = "<group>";
+		};
+		403E586022E1E44E0050ACF2 /* 自定义cell */ = {
+			isa = PBXGroup;
+			children = (
+				ACDBBE1722D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.h */,
+				ACDBBE1822D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m */,
+			);
+			name = "自定义cell";
+			sourceTree = "<group>";
+		};
+		403E586622E2A2220050ACF2 /* 自定义view */ = {
+			isa = PBXGroup;
+			children = (
+				403E586722E2A2490050ACF2 /* ELBrowserCustomView1.h */,
+				403E586822E2A2490050ACF2 /* ELBrowserCustomView1.m */,
+			);
+			name = "自定义view";
+			sourceTree = "<group>";
+		};
 		560CA9DE20594C3D2BA9066A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,12 +198,10 @@
 				ACD6D6362215027A001DEAE2 /* ImageURLPlist.plist */,
 				6003F5A5195388D20070C39A /* ELViewController.h */,
 				6003F5A6195388D20070C39A /* ELViewController.m */,
-				ACDBBE0F22D42D67007CF0F5 /* ELCustomProgressView.h */,
-				ACDBBE1022D42D67007CF0F5 /* ELCustomProgressView.m */,
-				ACDBBE1422D43223007CF0F5 /* ELBrowserCustomPageControlView.h */,
-				ACDBBE1522D43223007CF0F5 /* ELBrowserCustomPageControlView.m */,
-				ACDBBE1722D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.h */,
-				ACDBBE1822D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m */,
+				403E586622E2A2220050ACF2 /* 自定义view */,
+				403E585D22E1E4230050ACF2 /* 自定义进度条 */,
+				403E585F22E1E43B0050ACF2 /* 自定义分页视图 */,
+				403E586022E1E44E0050ACF2 /* 自定义cell */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -259,7 +301,7 @@
 				ORGANIZATIONNAME = LifeForLove;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = B859JP9X5P;
+						DevelopmentTeam = BMBPTRQ2Q4;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -359,11 +401,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				403E585C22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m in Sources */,
 				6003F59E195388D20070C39A /* ELAppDelegate.m in Sources */,
 				ACDBBE1622D43223007CF0F5 /* ELBrowserCustomPageControlView.m in Sources */,
 				ACDBBE1122D42D67007CF0F5 /* ELCustomProgressView.m in Sources */,
 				ACDBBE1922D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* ELViewController.m in Sources */,
+				403E586922E2A2490050ACF2 /* ELBrowserCustomView1.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,7 +536,7 @@
 			baseConfigurationReference = 9752A22B90D568ED4984EABF /* Pods-ELBrowser_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B859JP9X5P;
+				DEVELOPMENT_TEAM = BMBPTRQ2Q4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ELBrowser/ELBrowser-Prefix.pch";
 				INFOPLIST_FILE = "ELBrowser/ELBrowser-Info.plist";
@@ -509,7 +553,7 @@
 			baseConfigurationReference = 50E8884091AB99C83173B7F9 /* Pods-ELBrowser_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B859JP9X5P;
+				DEVELOPMENT_TEAM = BMBPTRQ2Q4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ELBrowser/ELBrowser-Prefix.pch";
 				INFOPLIST_FILE = "ELBrowser/ELBrowser-Info.plist";

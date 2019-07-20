@@ -17,6 +17,7 @@
 #import "ELBrowserProgressProtocol.h"
 #import "ELBrowserProgressView.h"
 #import "ELBrowserViewController.h"
+#import "ELBrowserViewProtocol.h"
 #import "STTransitionPopAnimation.h"
 #import "STTransitionPushAnimation.h"
 

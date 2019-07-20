@@ -51,6 +51,7 @@
 
 @property (nonatomic,strong) UICollectionViewFlowLayout *layout;
 
+@property (strong, nonatomic) UILabel * titleLabel;
 
 /**
  图片链接数组
@@ -73,10 +74,17 @@
 
 - (void)createView {
     [self.contentView addSubview:self.collectionView];
+    [self.contentView addSubview:self.titleLabel];
     [self.collectionView registerClass:[ELCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(20);
+        make.left.equalTo(self.contentView).offset(20);
+        make.right.equalTo(self.contentView).offset(-20);
+    }];
+    
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(20);
         make.width.mas_equalTo(200);
         make.centerX.equalTo(self.contentView);
         make.bottom.equalTo(self.contentView).offset(-20);
@@ -122,10 +130,39 @@
     vc.dataSource = self;
     vc.originalUrls = originalImageUrls;
     vc.smallUrls = smallImageUrls;//非必传
-    vc.customPageControlClassString = @"ELBrowserCustomPageControlView";//自定义分页视图 非必传
-    vc.customProgressClassString = @"ELCustomProgressView";//自定义进度条 非必传
-//    vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";//自定义cell 非必传
-    vc.customCellModelArray = @[@"测试1",@"测试2",@"测试3",@"测试4"];//自定义cell的数据模型
+    
+    if ([self.titleLabel.text isEqualToString:@"自定义加载视图"]) {
+        
+#pragma mark - 自定义进度条 非必传
+        vc.customProgressClassString = @"ELCustomProgressView";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义cell"]) {
+        
+#pragma mark - 自定义cell 非必传
+        vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";
+        //自定义cell的数据模型
+        vc.customCellModelArray = @[@"测试1",@"测试2",@"测试3",@"测试4"];
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义view"]) {
+        
+#pragma mark - 自定义cell 非必传
+        vc.customViewClassString = @"ELBrowserCustomView1";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义分页视图1"]) {
+        
+#pragma mark - 自定义分页视图 非必传
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义分页视图2"]) {
+        
+#pragma mark - 自定义分页视图 非必传
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView2";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"组合使用样式"]) {
+#pragma mark - 组合使用样式
+        vc.customViewClassString = @"ELBrowserCustomView1";
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView2";
+    }
     [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];
 }
 
@@ -190,6 +227,12 @@
     return _layout;
 }
 
+- (UILabel *)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc]init];
+    }
+    return _titleLabel;
+}
 
 
 - (void)setPicArr:(NSArray *)picArr {
@@ -215,6 +258,7 @@
 
 @property (nonatomic,strong) NSArray *infoArr;
 
+@property (strong, nonatomic) NSArray * titleArr;
 
 @end
 
@@ -225,10 +269,20 @@
     
     self.infoArr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ImageURLPlist.plist" ofType:nil]];
     
+    self.titleArr = @[@"普通样式",
+                      @"自定义cell",
+                      @"自定义view",
+                      @"长图、GIF图",
+                      @"自定义分页视图1",
+                      @"自定义分页视图2",
+                      @"自定义加载视图",
+                      @"组合使用样式"];
+    
     //****************** 使用tableView的情况 *********************************
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(self.view).offset(CGRectGetMaxY(self.navigationController.navigationBar.frame));
+        make.left.right.bottom.equalTo(self.view);
     }];
     
 }
@@ -249,6 +303,7 @@
         make.height.mas_equalTo(row * item_h + 2);
     }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.titleLabel.text =  indexPath.row < self.titleArr.count ? self.titleArr[indexPath.row] : nil;
     return cell;
 }
 

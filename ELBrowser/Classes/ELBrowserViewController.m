@@ -43,6 +43,8 @@
  */
 @property (nonatomic,strong) UIView<ELBrowserPageControlProtocol> * pageControl;
 
+@property (strong, nonatomic) UIView<ELBrowserViewProtocol>* customView;
+
 /**
  分页记录当前选中的
  */
@@ -54,6 +56,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self createView];
+    [self configTarget];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentSelectIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    });
+}
+
+- (void)createView {
     self.view.backgroundColor = [UIColor blackColor];
     self.collectionView.frame = CGRectMake(-kCollectionViewPadding, 0, self.view.bounds.size.width  + kCollectionViewPadding * 2, self.view.bounds.size.height);
     
@@ -69,9 +81,9 @@
     [self.view addSubview:self.collectionView];
     
     // 分页视图
-    Class customPageControl = NSClassFromString(self.customPageControlClassString);
-    if (self.customPageControlClassString.length > 0 && [customPageControl isSubclassOfClass:[UIView class]]) {
-        self.pageControl = [[customPageControl alloc]init];
+    Class customPageControlClass = NSClassFromString(self.customPageControlClassString);
+    if (self.customPageControlClassString.length > 0 && [customPageControlClass isSubclassOfClass:[UIView class]]) {
+        self.pageControl = [[customPageControlClass alloc]init];
         if ([self.pageControl conformsToProtocol:@protocol(ELBrowserPageControlProtocol)]) {
             [self.view addSubview:self.pageControl];
             //设置当前选中pageIndex
@@ -79,10 +91,25 @@
         }
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentSelectIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-    });
-    
+    // 自定义view
+    Class customViewClass = NSClassFromString(self.customViewClassString);
+    if (self.customViewClassString.length > 0 && [customViewClass isSubclassOfClass:[UIView class]]) {
+        self.customView = [[customViewClass alloc]init];
+        if ([self.customView conformsToProtocol:@protocol(ELBrowserViewProtocol)]) {
+            [self.view addSubview:self.customView];
+        }
+        
+        if ([self.customView respondsToSelector:@selector(setFromViewController:)]) {
+            self.customView.fromViewController = self.fromViewController;
+        }
+        
+        if ([self.customView respondsToSelector:@selector(setBrowserViewController:)]) {
+            self.customView.browserViewController = self;
+        }
+    }
+}
+
+- (void)configTarget {
     // 拖动手势
     self.panGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
     self.panGes.delegate = self;
@@ -93,6 +120,7 @@
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
 }
+
 
 - (BOOL)shouldAutorotate {
     switch (self.panGes.state) {
@@ -112,7 +140,7 @@
     _offsetPageIndex = _collectionView.contentOffset.x / _layout.itemSize.width;
 }
 
-
+#pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer == self.panGes) {
         CGPoint velocity = [self.panGes velocityInView:gestureRecognizer.view];
@@ -129,6 +157,7 @@
     return YES;
 }
 
+#pragma mark - UIPanGestureRecognizer Target
 - (void)handleGesture:(UIPanGestureRecognizer *)panGesture {
     CGPoint  translation = [panGesture translationInView:self.collectionView];
     
@@ -165,10 +194,7 @@
                     if (cell.progressView) {
                         cell.progressView.hidden = NO;
                     }
-                    self.collectionView.center = CGPointMake(self.view.center.x,
-                                                             self.view.center.y);
-                    self.collectionView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-                    self.view.backgroundColor =  [UIColor blackColor];
+                    [self recover];
                 }];
             }
             break;
@@ -178,6 +204,7 @@
     }
 }
 
+#pragma mark - 恢复
 - (void)recover {
     self.collectionView.center = CGPointMake(self.view.center.x,
                                              self.view.center.y);
@@ -185,6 +212,7 @@
     self.view.backgroundColor =  [UIColor blackColor];
 }
 
+#pragma mark - 展示
 - (void)showWithFormViewController:(UIViewController *)viewController {
     [self showWithFormViewController:viewController selectIndex:0];
 }
@@ -217,6 +245,7 @@
     [viewController presentViewController:self animated:YES completion:nil];
 }
 
+#pragma mark - 消失
 - (void)hidden {
     //清除大图缓存
     for (NSString * key in self.originalUrls) {
@@ -389,6 +418,10 @@
     //重置pageControl frame
     if ([self.pageControl respondsToSelector:@selector(resetFrame:)]) {
         [self.pageControl resetFrame:self.view];
+    }
+    
+    if ([self.customView respondsToSelector:@selector(resetFrame:)]) {
+        [self.customView resetFrame:self.view];
     }
 }
 

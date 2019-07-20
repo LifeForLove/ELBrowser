@@ -54,11 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<NSString *> *smallUrls;
 
 /**
- coverview Model
- */
-@property (nonatomic,strong) NSArray *coverModelArray;
-
-/**
  当前选中的Index
  */
 @property (nonatomic,assign,readonly) NSInteger currentSelectIndex;
@@ -87,6 +82,11 @@ NS_ASSUME_NONNULL_BEGIN
  自定义cell 模型数组
  */
 @property (nonatomic,strong) NSArray *customCellModelArray;
+
+/**
+ 自定义view
+ */
+@property (strong, nonatomic) NSString * customViewClassString;
 
 @property (nonatomic, weak, nullable) id <ELBrowserViewControllerDelegate> delegate;
 @property (nonatomic, weak, nullable) id <ELBrowserViewControllerDataSource> dataSource;
