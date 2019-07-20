@@ -32,20 +32,46 @@ pod 'ELBrowser'
 
 ###使用方法
 ```
-    ELBrowserViewController * vc = [[ELBrowserViewController alloc]init];
+     ELBrowserViewController * vc = [[ELBrowserViewController alloc]init];
     vc.delegate = self;
     vc.dataSource = self;
     vc.originalUrls = originalImageUrls;
     vc.smallUrls = smallImageUrls;//非必传
-    vc.customPageControlClassString = @"ELBrowserCustomPageControlView";//自定义分页视图（类名） 非必传
-    vc.customProgressClassString = @"ELCustomProgressView";//自定义进度条（类名） 非必传
-    vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";//自定义cell（类名） 非必传
-    [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];```
-
-
-## 效果图
-
-![image](https://github.com/LifeForLove/ELBrowser/blob/master/QQ20180423-151831.gif)
+    
+    if ([self.titleLabel.text isEqualToString:@"自定义加载视图"]) {
+        
+#pragma mark - 自定义进度条 非必传
+        vc.customProgressClassString = @"ELCustomProgressView";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义cell"]) {
+        
+#pragma mark - 自定义cell 非必传
+        vc.customCellClassString = @"ELBrowserCustomCollectionViewCell";
+        //自定义cell的数据模型
+        vc.customCellModelArray = @[@"测试1",@"测试2",@"测试3",@"测试4"];
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义view"]) {
+        
+#pragma mark - 自定义cell 非必传
+        vc.customViewClassString = @"ELBrowserCustomView1";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义分页视图1"]) {
+        
+#pragma mark - 自定义分页视图 非必传
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"自定义分页视图2"]) {
+        
+#pragma mark - 自定义分页视图 非必传
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView2";
+        
+    } else if ([self.titleLabel.text isEqualToString:@"组合使用样式"]) {
+#pragma mark - 组合使用样式
+        vc.customViewClassString = @"ELBrowserCustomView1";
+        vc.customPageControlClassString = @"ELBrowserCustomPageControlView2";
+    }
+    [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];
+```
 
 ## Author
 
