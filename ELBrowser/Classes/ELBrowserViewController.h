@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /**
+ 开始的frame
+ */
+- (CGRect)el_browserBeginFrameWithSelectIndex:(NSInteger)selectIndex;
+
+/**
  返回的frame
  */
 - (CGRect)el_browserBackFrameWithSelectIndex:(NSInteger)selectIndex;
@@ -33,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
  下载失败的回调
  */
 - (void)el_browserLoadFailed:(ELBrowserViewController *)browserViewContrller;
+
+/**
+ 自定义返回样式
+ */
+- (void)el_browserCustomBackGesture:(UIPanGestureRecognizer *)gesture browserCollectionView:(UICollectionView *)collectionView browserViewController:(ELBrowserViewController *)browserViewController;
 
 /**
  消失的回调

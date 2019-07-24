@@ -12,6 +12,7 @@
 #import <Masonry.h>
 #import "ELBrowserCustomPageControlView.h"
 #import "ELCustomProgressView.h"
+#import "ELCustomAnimViewController.h"
 
 @interface ELCollectionViewCell :UICollectionViewCell
 @property (nonatomic, strong) UIImageView *imgView;
@@ -162,6 +163,11 @@
 #pragma mark - 组合使用样式
         vc.customViewClassString = @"ELBrowserCustomView1";
         vc.customPageControlClassString = @"ELBrowserCustomPageControlView2";
+    } else if ([self.titleLabel.text isEqualToString:@"自定义动画样式"]) {
+#pragma mark - 自定义返回样式
+        ELCustomAnimViewController * vc = [[ELCustomAnimViewController alloc]init];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+        return;
     }
     [vc showWithFormViewController:[self viewController] selectIndex:indexPath.item];
 }
@@ -182,6 +188,20 @@
 }
 
 #pragma mark -  ELBrowserViewControllerDataSource
+
+/**
+ 自定义开始的位置
+ 
+ @param selectIndex 当前选中index
+ @return 开始的位置
+ */
+- (CGRect)el_browserBeginFrameWithSelectIndex:(NSInteger)selectIndex {
+    UICollectionViewCell * cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0]];
+    UIViewController * topVc = [self viewController];
+    CGRect cellf = [self.collectionView convertRect:cell.frame toView:topVc.view];
+    return cellf;
+}
+
 /**
  自定义返回位置
 
@@ -276,7 +296,8 @@
                       @"自定义分页视图1",
                       @"自定义分页视图2",
                       @"自定义加载视图",
-                      @"组合使用样式"];
+                      @"组合使用样式",
+                      @"自定义动画样式"];
     
     //****************** 使用tableView的情况 *********************************
     [self.view addSubview:self.tableView];

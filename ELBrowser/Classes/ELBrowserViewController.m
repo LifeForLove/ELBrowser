@@ -29,6 +29,11 @@
  */
 @property (nonatomic,assign) CGRect backAnimationFrame;
 
+/**
+ 开始的frame
+ */
+@property (nonatomic,assign) CGRect beginAnimationFrame;
+
 
 /**
  添加拖动缩小手势
@@ -159,11 +164,20 @@
 
 #pragma mark - UIPanGestureRecognizer Target
 - (void)handleGesture:(UIPanGestureRecognizer *)panGesture {
+    if ([self.delegate respondsToSelector:@selector(el_browserCustomBackGesture:browserCollectionView:browserViewController:)]) {
+        [self.delegate el_browserCustomBackGesture:panGesture browserCollectionView:self.collectionView browserViewController:self];
+    } else {
+        [self normalBackStyleWithGesture:panGesture];
+    }
+}
+
+#pragma mark - 默认返回样式
+- (void)normalBackStyleWithGesture:(UIPanGestureRecognizer *)panGesture {
+    
     CGPoint  translation = [panGesture translationInView:self.collectionView];
     
     switch (panGesture.state) {
-        case UIGestureRecognizerStateBegan:
-        {
+        case UIGestureRecognizerStateBegan: {
             //隐藏加载进度条
             ELBrowserCollectionViewCell * cell = (ELBrowserCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentSelectIndex inSection:0]];
             if (cell.progressView) {
@@ -171,16 +185,14 @@
             }
         }
             break;
-        case UIGestureRecognizerStateChanged:
-        {
+        case UIGestureRecognizerStateChanged: {
             CGFloat progress = translation.y / self.view.bounds.size.height;
             progress = fminf(fmaxf(progress, 0.0), 1.0);
             
             CGFloat ratio = 1.0f - progress * 0.5;
-            [self.collectionView setCenter:CGPointMake(self.view.center.x + translation.x * ratio, self.view.center.y + translation.y * ratio)];
-            self.collectionView.transform = CGAffineTransformMakeScale(ratio, ratio);
+            [panGesture.view setCenter:CGPointMake(self.view.center.x + translation.x * ratio, self.view.center.y + translation.y * ratio)];
+            panGesture.view.transform = CGAffineTransformMakeScale(ratio, ratio);
             self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:ratio];
-            NSLog(@"%@",NSStringFromCGRect(self.collectionView.frame));
         }
             break;
         case UIGestureRecognizerStateEnded:  {
@@ -278,7 +290,7 @@
     
     [self updateBackFrame];
     
-    self.pushAnimation.beforeFrame = self.backAnimationFrame;
+    self.pushAnimation.beforeFrame = self.beginAnimationFrame;
     return self.pushAnimation;
 }
 
@@ -307,6 +319,14 @@
         //设置默认值
         self.backAnimationFrame = CGRectMake((self.view.bounds.size.width - 5)/2, (self.view.bounds.size.height - 5)/2, 5, 5);
     }
+    
+    if ([self.dataSource respondsToSelector:@selector(el_browserBeginFrameWithSelectIndex:)]) {
+        self.beginAnimationFrame = [self.dataSource el_browserBeginFrameWithSelectIndex:self.currentSelectIndex];
+    } else {
+        //设置默认值
+        self.backAnimationFrame = CGRectMake((self.view.bounds.size.width - 5)/2, (self.view.bounds.size.height - 5)/2, 5, 5);
+    }
+    
 }
 
 #pragma mark - 从SDWebimage 缓存中取图片

@@ -276,5 +276,19 @@
 			<string>http://wx1.sinaimg.cn/mw690/006zYyrSly1frmey4bktvj30f3080wft.jpg</string>
 		</dict>
 	</array>
+	<array>
+		<dict>
+			<key>timg</key>
+			<string>http://ww1.sinaimg.cn/square/673c0421ly1g59r5dmsswj222o340x6p.jpg</string>
+			<key>oimg</key>
+			<string>http://ww1.sinaimg.cn/bmiddle/673c0421ly1g59r5dmsswj222o340x6p.jpg</string>
+		</dict>
+		<dict>
+			<key>timg</key>
+			<string>http://ww2.sinaimg.cn/square/673c0421ly1g59r5fqddoj22b33gmx6r.jpg</string>
+			<key>oimg</key>
+			<string>http://ww2.sinaimg.cn/bmiddle/673c0421ly1g59r5fqddoj22b33gmx6r.jpg</string>
+		</dict>
+	</array>
 </array>
 </plist>

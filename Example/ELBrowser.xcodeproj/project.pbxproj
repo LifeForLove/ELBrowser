@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		403E585C22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E585B22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m */; };
 		403E586922E2A2490050ACF2 /* ELBrowserCustomView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E586822E2A2490050ACF2 /* ELBrowserCustomView1.m */; };
+		403E58AF22E7F3340050ACF2 /* ELCustomAnimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E58AE22E7F3340050ACF2 /* ELCustomAnimViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		403E585B22E1E0A10050ACF2 /* ELBrowserCustomPageControlView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomPageControlView2.m; sourceTree = "<group>"; };
 		403E586722E2A2490050ACF2 /* ELBrowserCustomView1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELBrowserCustomView1.h; sourceTree = "<group>"; };
 		403E586822E2A2490050ACF2 /* ELBrowserCustomView1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELBrowserCustomView1.m; sourceTree = "<group>"; };
+		403E58AD22E7F3340050ACF2 /* ELCustomAnimViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELCustomAnimViewController.h; sourceTree = "<group>"; };
+		403E58AE22E7F3340050ACF2 /* ELCustomAnimViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELCustomAnimViewController.m; sourceTree = "<group>"; };
 		50E8884091AB99C83173B7F9 /* Pods-ELBrowser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELBrowser_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELBrowser_Example/Pods-ELBrowser_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ELBrowser_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ELBrowser_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,6 +149,15 @@
 			name = "自定义view";
 			sourceTree = "<group>";
 		};
+		403E58AC22E7F2840050ACF2 /* 自定义动画 */ = {
+			isa = PBXGroup;
+			children = (
+				403E58AD22E7F3340050ACF2 /* ELCustomAnimViewController.h */,
+				403E58AE22E7F3340050ACF2 /* ELCustomAnimViewController.m */,
+			);
+			name = "自定义动画";
+			sourceTree = "<group>";
+		};
 		560CA9DE20594C3D2BA9066A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +210,7 @@
 				ACD6D6362215027A001DEAE2 /* ImageURLPlist.plist */,
 				6003F5A5195388D20070C39A /* ELViewController.h */,
 				6003F5A6195388D20070C39A /* ELViewController.m */,
+				403E58AC22E7F2840050ACF2 /* 自定义动画 */,
 				403E586622E2A2220050ACF2 /* 自定义view */,
 				403E585D22E1E4230050ACF2 /* 自定义进度条 */,
 				403E585F22E1E43B0050ACF2 /* 自定义分页视图 */,
@@ -406,6 +419,7 @@
 				ACDBBE1622D43223007CF0F5 /* ELBrowserCustomPageControlView.m in Sources */,
 				ACDBBE1122D42D67007CF0F5 /* ELCustomProgressView.m in Sources */,
 				ACDBBE1922D43AB9007CF0F5 /* ELBrowserCustomCollectionViewCell.m in Sources */,
+				403E58AF22E7F3340050ACF2 /* ELCustomAnimViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* ELViewController.m in Sources */,
 				403E586922E2A2490050ACF2 /* ELBrowserCustomView1.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
