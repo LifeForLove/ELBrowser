@@ -88,7 +88,6 @@
     CGPoint  translation = [gesture translationInView:collectionView];
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {
-            //隐藏加载进度条
             self.firstTouchPoint = translation;
         }
             break;

@@ -31,6 +31,8 @@ pod 'ELBrowser'
 	支持自定义 collectionViewCell
 	支持自定义分页视图
 	支持自定义view
+	支持自定义交互动画
+	支持自定义动画起始位置
 
 ### 使用方法
 
@@ -115,13 +117,59 @@ pod 'ELBrowser'
 	协议方法 
 	- (void)el_browserPageControlChanged:(NSInteger)currentSelectIndex totalCount:(NSInteger)totalCount; 滑动时回调此方法显示分页位置
 
+##### 自定义交互动画 ELBrowserViewControllerDelegate
+	
+	需要实现协议方法
+	- (void)el_browserCustomBackGesture:(UIPanGestureRecognizer *)gesture browserCollectionView:(UICollectionView *)collectionView browserViewController:(ELBrowserViewController *)browserViewController {
 
+    CGPoint  translation = [gesture translationInView:collectionView];
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan: {
+            self.firstTouchPoint = translation;
+        }
+            break;
+        case UIGestureRecognizerStateChanged: {
+            CGFloat offset_y = translation.y - self.firstTouchPoint.y;
+            CGFloat alpha = 1- (offset_y / browserViewController.view.bounds.size.height);
+            collectionView.frame = CGRectMake(collectionView.frame.origin.x, offset_y, collectionView.frame.size.width, collectionView.frame.size.height);
+            browserViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:alpha];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:  {
+            CGFloat offset_y = translation.y - self.firstTouchPoint.y;
+            if (offset_y > 30) {
+                [browserViewController hidden];
+            } else {
+                collectionView.frame = CGRectMake(collectionView.frame.origin.x, 0, collectionView.frame.size.width, collectionView.frame.size.height);
+                browserViewController.view.backgroundColor = [UIColor blackColor];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+	}
 	
-	
+##### 自定义动画起始位置 ELBrowserViewControllerDataSource
+
+	/**
+	自定义开始的位置
+	@param selectIndex 当前选中index
+	@return 开始的位置
+	*/
+	- (CGRect)el_browserBeginFrameWithSelectIndex:(NSInteger)selectIndex;
+
+	/**
+	自定义返回位置
+	@param selectIndex 当前选中index
+	@return 消失的位置
+	*/
+	- (CGRect)el_browserBackFrameWithSelectIndex:(NSInteger)selectIndex;
 
 ## Author
 
-LifeForLove, getElementByYou@163.com
+如果使用遇到任何问题欢迎加我微信ios_gx,如果觉得写得还行欢迎star，承接各种变态需求。
+getElementByYou@163.com
 
 ## License
 
