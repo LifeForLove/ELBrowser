@@ -168,7 +168,10 @@ pod 'ELBrowser'
 
 ## Author
 
-如果使用遇到任何问题欢迎加我微信ios_gx,如果觉得写得还行欢迎star，承接各种变态需求。
+如果使用中遇到任何问题欢迎加我微信ios_gx,如果觉得写得还行欢迎star。
+
+另外，承接各种变态需求。
+
 getElementByYou@163.com
 
 ## License
