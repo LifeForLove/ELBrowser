@@ -33,6 +33,9 @@ pod 'ELBrowser'
 	支持自定义view
 	支持自定义交互动画
 	支持自定义动画起始位置
+	
+### 效果图
+![image](https://github.com/LifeForLove/ELBrowser/blob/master/demo.gif )
 
 ### 使用方法
 
