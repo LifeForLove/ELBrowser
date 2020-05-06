@@ -33,6 +33,20 @@ pod 'ELBrowser'
 	支持自定义view
 	支持自定义交互动画
 	支持自定义动画起始位置
+	
+### 效果图
+
+#### 普通样式
+![image](https://github.com/LifeForLove/ELBrowser/blob/master/default.gif)
+
+#### 自定义cell样式
+![image](https://github.com/LifeForLove/ELBrowser/blob/master/cell.gif)
+
+#### 组合使用样式
+![image](https://github.com/LifeForLove/ELBrowser/blob/master/zh.gif)
+
+#### 自定义交互动画样式
+![image](https://github.com/LifeForLove/ELBrowser/blob/master/zdy.gif)
 
 ### 使用方法
 
