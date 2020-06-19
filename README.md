@@ -33,6 +33,7 @@ pod 'ELBrowser'
 	支持自定义view
 	支持自定义交互动画
 	支持自定义动画起始位置
+      支持最新版本SDWebimage 5.6.0,如果需要使用SDWebimage 5.0之前的版本,请使用ELBrowser 1.0.3版本.
 	
 ### 效果图
 
