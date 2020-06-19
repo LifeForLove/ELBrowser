@@ -8,9 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "ELBrowser.h"
 #import "ELBrowserProgressProtocol.h"
-#import "FLAnimatedImage.h"
 #import "ELBrowserCollectionViewCellProtocol.h"
-
+#import "SDAnimatedImageView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class ELBrowserCollectionViewCell;
@@ -44,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  展示的imageView 图片
  */
-@property (nonatomic, strong) FLAnimatedImageView *imageView;
+@property (nonatomic, strong) SDAnimatedImageView *imageView;
 
 /**
  进度条

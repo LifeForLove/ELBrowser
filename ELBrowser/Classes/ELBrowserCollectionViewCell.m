@@ -285,9 +285,9 @@
     [self updateImageViewWithImage:self.imageView.image];
 }
 
-- (FLAnimatedImageView *)imageView {
+- (SDAnimatedImageView *)imageView {
     if(_imageView == nil) {
-        _imageView = [[FLAnimatedImageView alloc] init];
+        _imageView = [[SDAnimatedImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
         _imageView.clipsToBounds = YES;
         _imageView.userInteractionEnabled = YES;

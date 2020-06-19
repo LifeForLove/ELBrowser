@@ -38,8 +38,7 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-    s.dependency 'SDWebImage' ,'~> 4.0'
-    s.dependency 'SDWebImage/GIF'
+    s.dependency 'SDWebImage' ,'~> 5.6.0'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Private/ELBrowser/',
         'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
     
