@@ -22,6 +22,7 @@ TODO: Add long description of the pod here.
                        DESC
 
   s.homepage         = 'https://github.com/LifeForLove/ELBrowser'
+  s.version          = '2.0.0'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'LifeForLove' => 'getElementByYou@163.com' }
